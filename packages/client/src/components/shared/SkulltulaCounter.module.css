@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+}
+
+.spider {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 4px rgba(244, 208, 63, 0.4));
+  animation: skulltulaSwing 3s ease-in-out infinite;
+}
+
+.count {
+  font-family: var(--oot-font-pixel);
+  font-size: var(--oot-font-size-md);
+  color: var(--oot-gold-light);
+  text-shadow: 0 0 8px rgba(244, 208, 63, 0.3);
+}
+
+.countZero {
+  composes: count;
+  color: var(--oot-green-light);
+}
+
+@keyframes skulltulaSwing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}

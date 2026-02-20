@@ -1,0 +1,132 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  animation: fade-in 0.2s ease;
+}
+
+.console {
+  width: 560px;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--oot-space-sm);
+  padding-bottom: var(--oot-space-sm);
+  border-bottom: 2px solid var(--oot-gold-dark);
+}
+
+.closeBtn {
+  background: none;
+  border: 1px solid var(--oot-gold-dark);
+  padding: 2px 8px;
+  cursor: pointer;
+  color: var(--oot-text-primary);
+  font-family: var(--oot-font-pixel);
+}
+
+.closeBtn:hover {
+  border-color: var(--oot-red-heart);
+  color: var(--oot-text-danger);
+}
+
+/* Ocarina visual */
+.ocarinaVisual {
+  text-align: center;
+  margin-bottom: var(--oot-space-md);
+  filter: drop-shadow(0 0 8px rgba(66, 165, 245, 0.3));
+}
+
+.songList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--oot-space-xs);
+}
+
+.songRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--oot-space-sm) var(--oot-space-md);
+  background: var(--oot-bg-dark);
+  border: 2px solid transparent;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+}
+
+.songRow:hover {
+  border-color: var(--oot-gold-medium);
+  border-left-color: var(--song-color, var(--oot-gold-medium));
+  background: var(--oot-bg-medium);
+}
+
+.songActive {
+  border-left-color: var(--song-color, var(--oot-gold-light));
+  background: var(--oot-bg-medium);
+}
+
+.songRow:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.songInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Note button display */
+.noteButtons {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.noteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-family: var(--oot-font-pixel);
+  font-size: 8px;
+  color: #1a1a2e;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: notePopIn 0.3s ease backwards;
+}
+
+@keyframes notePopIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.notes {
+  padding: var(--oot-space-xs) var(--oot-space-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--oot-brown-medium);
+  letter-spacing: 2px;
+}
+
+.result {
+  margin-top: var(--oot-space-md);
+  padding: var(--oot-space-sm) var(--oot-space-md);
+  background: rgba(126, 200, 80, 0.1);
+  border: 1px solid var(--oot-green-dark);
+  animation: fade-in 0.3s ease;
+}

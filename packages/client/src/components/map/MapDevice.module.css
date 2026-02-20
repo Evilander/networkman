@@ -1,0 +1,92 @@
+.device {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 5;
+}
+
+.device:hover {
+  z-index: 10;
+}
+
+.marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.device:hover .marker {
+  transform: scale(1.3);
+}
+
+.markerInner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Status styles */
+.online .marker {
+  border-color: var(--oot-green-light);
+  animation: marker-pulse-online 2s ease-in-out infinite;
+}
+.online .markerInner {
+  background: var(--oot-green-light);
+}
+
+.degraded .marker {
+  border-color: var(--oot-gold-medium);
+  animation: marker-pulse-degraded 1.5s ease-in-out infinite;
+}
+.degraded .markerInner {
+  background: var(--oot-gold-light);
+}
+
+.offline .marker {
+  border-color: var(--oot-red-heart);
+  animation: marker-blink-offline 1s ease-in-out infinite;
+}
+.offline .markerInner {
+  background: var(--oot-red-heart);
+}
+
+.unknown .marker {
+  border-color: var(--oot-brown-light);
+  opacity: 0.5;
+}
+.unknown .markerInner {
+  background: var(--oot-brown-light);
+}
+
+.selected .marker {
+  transform: scale(1.4);
+  border-width: 3px;
+  border-color: var(--oot-gold-light) !important;
+}
+
+/* Tooltip on hover */
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  background: rgba(10, 10, 10, 0.95);
+  border: 2px solid var(--oot-gold-dark);
+  box-shadow: inset 0 0 0 1px var(--oot-gold-medium), 0 4px 8px rgba(0,0,0,0.6);
+  padding: var(--oot-space-sm);
+  white-space: nowrap;
+  min-width: 100px;
+  flex-direction: column;
+  gap: 4px;
+  animation: fade-in 0.15s ease;
+}
+
+.device:hover .tooltip {
+  display: flex;
+}

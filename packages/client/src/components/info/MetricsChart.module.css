@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--oot-space-xs);
+}
+
+.rangeSelector {
+  display: flex;
+  gap: 2px;
+}
+
+.rangeBtn {
+  background: var(--oot-bg-dark);
+  border: 1px solid var(--oot-gold-dark);
+  padding: 2px 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.rangeBtn:hover {
+  background: var(--oot-bg-medium);
+}
+
+.active {
+  background: var(--oot-bg-panel);
+  border-color: var(--oot-gold-light);
+}
+
+.empty {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--oot-gold-dark);
+}
