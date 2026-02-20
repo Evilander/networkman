@@ -16,7 +16,7 @@ export const DEFAULT_SCAN_CONFIG: ScanConfig = {
 };
 
 export const DEFAULT_CONFIG: DashboardConfig = {
-  subnets: [{ cidr: '192.168.1.0/24', label: 'Default LAN', enabled: true }],
+  subnets: [{ cidr: '10.101.91.0/24', label: 'Office LAN', enabled: true }],
   scanIntervalSeconds: 600,
   healthCheckIntervalSeconds: 30,
   alertThresholds: DEFAULT_THRESHOLDS,
