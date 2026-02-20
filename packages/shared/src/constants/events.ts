@@ -1,0 +1,16 @@
+export const WS_EVENTS = {
+  DEVICES_LIST: 'devices:list',
+  DEVICE_UPDATED: 'device:updated',
+  DEVICE_STATUS_CHANGED: 'device:status-changed',
+  DEVICE_DISCOVERED: 'device:discovered',
+  ALERT_NEW: 'alert:new',
+  ALERT_ACKNOWLEDGED: 'alert:acknowledged',
+  METRICS_UPDATE: 'metrics:update',
+  SCAN_PROGRESS: 'scan:progress',
+  SCAN_COMPLETE: 'scan:complete',
+  DEVICES_REQUEST_LIST: 'devices:request-list',
+  METRICS_SUBSCRIBE: 'metrics:subscribe',
+  METRICS_UNSUBSCRIBE: 'metrics:unsubscribe',
+  SCAN_TRIGGER: 'scan:trigger',
+  ALERT_ACKNOWLEDGE: 'alert:acknowledge',
+} as const;

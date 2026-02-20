@@ -1,0 +1,87 @@
+.sidebar {
+  width: 320px;
+  min-width: 320px;
+  height: 100%;
+  animation: slide-in-right 0.3s ease;
+}
+
+.frame {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.frame > div:last-child {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 2px solid var(--oot-gold-dark);
+  padding-bottom: var(--oot-space-sm);
+  margin-bottom: var(--oot-space-sm);
+}
+
+.tab {
+  flex: 1;
+  background: var(--oot-bg-dark);
+  border: 1px solid var(--oot-gold-dark);
+  padding: var(--oot-space-xs) var(--oot-space-sm);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.tab:hover {
+  background: var(--oot-bg-medium);
+  border-color: var(--oot-gold-medium);
+}
+
+.tab.active {
+  background: var(--oot-bg-panel);
+  border-color: var(--oot-gold-light);
+}
+
+.closeBtn {
+  background: var(--oot-bg-dark);
+  border: 1px solid var(--oot-gold-dark);
+  padding: var(--oot-space-xs) var(--oot-space-sm);
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background: var(--oot-bg-medium);
+}
+
+.skulltulaRow {
+  border-bottom: 1px solid var(--oot-gold-dark);
+  margin-bottom: var(--oot-space-xs);
+  padding-bottom: var(--oot-space-xs);
+}
+
+.panelContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.openBtn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--oot-bg-dark);
+  border: 2px solid var(--oot-gold-dark);
+  border-right: none;
+  padding: var(--oot-space-md) var(--oot-space-xs);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.openBtn:hover {
+  background: var(--oot-bg-medium);
+  border-color: var(--oot-gold-medium);
+}

@@ -1,0 +1,62 @@
+:root {
+  /* === OoT Color Palette === */
+  --oot-bg-darkest:       #0a0a0a;
+  --oot-bg-dark:          #1a1a2e;
+  --oot-bg-medium:        #16213e;
+  --oot-bg-panel:         #0f3460;
+
+  --oot-green-dark:       #2d5a27;
+  --oot-green-medium:     #4a7c3f;
+  --oot-green-light:      #7ec850;
+
+  --oot-gold-dark:        #8b6914;
+  --oot-gold-medium:      #c9a227;
+  --oot-gold-light:       #f4d03f;
+
+  --oot-brown-dark:       #3e2723;
+  --oot-brown-medium:     #6d4c41;
+  --oot-brown-light:      #a1887f;
+
+  --oot-red-heart:        #e53935;
+  --oot-red-dark:         #8b0000;
+
+  --oot-blue-navi:        #42a5f5;
+  --oot-blue-light:       #90caf9;
+
+  --oot-rupee-green:      #4caf50;
+  --oot-rupee-blue:       #2196f3;
+  --oot-rupee-red:        #f44336;
+
+  --oot-text-primary:     #f5f5dc;
+  --oot-text-secondary:   #bdb76b;
+  --oot-text-highlight:   #f4d03f;
+  --oot-text-danger:      #ef5350;
+
+  /* === Frame/Border Properties === */
+  --oot-frame-outer:      #8b6914;
+  --oot-frame-inner:      #1a1a2e;
+  --oot-frame-shadow:     inset 0 0 0 2px #c9a227,
+                          inset 0 0 0 4px #0a0a0a,
+                          0 0 0 2px #0a0a0a;
+
+  /* === Typography === */
+  --oot-font-pixel:       'Press Start 2P', monospace;
+  --oot-font-size-xs:     8px;
+  --oot-font-size-sm:     10px;
+  --oot-font-size-md:     13px;
+  --oot-font-size-lg:     18px;
+  --oot-font-size-xl:     24px;
+
+  /* === Spacing === */
+  --oot-space-xs:         4px;
+  --oot-space-sm:         8px;
+  --oot-space-md:         16px;
+  --oot-space-lg:         24px;
+  --oot-space-xl:         32px;
+
+  /* === Animation Timing === */
+  --oot-anim-navi-bob:    2s ease-in-out infinite;
+  --oot-anim-heart-pulse: 0.5s ease-in-out;
+  --oot-anim-fade:        0.3s ease;
+  --oot-anim-typewriter:  50ms;
+}

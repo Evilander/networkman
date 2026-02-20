@@ -1,0 +1,15 @@
+.text {
+  font-family: var(--oot-font-pixel);
+  line-height: 1.5;
+}
+
+.size_xs { font-size: var(--oot-font-size-xs); }
+.size_sm { font-size: var(--oot-font-size-sm); }
+.size_md { font-size: var(--oot-font-size-md); }
+.size_lg { font-size: var(--oot-font-size-lg); }
+.size_xl { font-size: var(--oot-font-size-xl); }
+
+.color_primary { color: var(--oot-text-primary); }
+.color_secondary { color: var(--oot-text-secondary); }
+.color_highlight { color: var(--oot-text-highlight); }
+.color_danger { color: var(--oot-text-danger); }

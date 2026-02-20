@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--oot-space-xs);
+}
+
+.rupee {
+  flex-shrink: 0;
+}
+
+.green polygon:first-child { fill: #1b5e20; }
+.green .inner { fill: var(--oot-rupee-green); }
+.green .shine { stroke: #81c784; stroke-width: 1; }
+
+.blue polygon:first-child { fill: #0d47a1; }
+.blue .inner { fill: var(--oot-rupee-blue); }
+.blue .shine { stroke: #64b5f6; stroke-width: 1; }
+
+.red polygon:first-child { fill: #b71c1c; }
+.red .inner { fill: var(--oot-rupee-red); }
+.red .shine { stroke: #ef9a9a; stroke-width: 1; }
+
+.value {
+  font-family: var(--oot-font-pixel);
+  font-size: var(--oot-font-size-sm);
+  color: var(--oot-text-primary);
+  min-width: 40px;
+}
+
+.flash {
+  animation: rupee-flash 0.3s ease;
+}
+
+.label {
+  font-family: var(--oot-font-pixel);
+  font-size: var(--oot-font-size-xs);
+  color: var(--oot-text-secondary);
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import './theme.css';
+@import './animations.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--oot-font-pixel);
+  font-size: var(--oot-font-size-md);
+  color: var(--oot-text-primary);
+  background: var(--oot-bg-darkest);
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--oot-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--oot-gold-dark);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--oot-gold-medium);
+}
+
+a {
+  color: var(--oot-blue-navi);
+  text-decoration: none;
+}

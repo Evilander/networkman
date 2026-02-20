@@ -1,0 +1,71 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  animation: itemGetFadeIn 0.3s ease;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: itemGetBounce 0.6s ease;
+}
+
+.iconWrapper {
+  animation: itemGetRise 0.8s ease;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 0 12px rgba(244, 208, 63, 0.8));
+  animation: itemGetGlow 2s ease-in-out infinite;
+}
+
+.fanfare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dismiss {
+  font-family: var(--oot-font-pixel);
+  font-size: var(--oot-font-size-xs);
+  color: var(--oot-text-secondary);
+  animation: promptBlink 1.5s ease-in-out infinite;
+  margin-top: 8px;
+}
+
+@keyframes itemGetFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes itemGetBounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes itemGetRise {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes itemGetGlow {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(244, 208, 63, 0.6)); }
+  50% { filter: drop-shadow(0 0 24px rgba(244, 208, 63, 1)); }
+}
+
+@keyframes promptBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
