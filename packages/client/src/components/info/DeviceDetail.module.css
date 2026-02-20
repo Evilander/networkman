@@ -8,6 +8,28 @@
   margin-bottom: var(--oot-space-xs);
 }
 
+/* Identity row: icon + name/status */
+.identityRow {
+  display: flex;
+  align-items: center;
+  gap: var(--oot-space-md);
+  padding: var(--oot-space-sm);
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--oot-gold-dark);
+}
+
+.deviceIcon {
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(244, 208, 63, 0.2));
+}
+
+.identityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
 .nameRow {
   display: flex;
   align-items: center;
@@ -19,6 +41,7 @@
   padding: 2px 6px;
   border: 1px solid;
   border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .online { border-color: var(--oot-green-light); background: rgba(126, 200, 80, 0.15); }
@@ -26,12 +49,41 @@
 .offline { border-color: var(--oot-red-heart); background: rgba(229, 57, 53, 0.15); }
 .unknown { border-color: var(--oot-brown-light); background: rgba(161, 136, 127, 0.15); }
 
+/* Health hearts section */
+.healthSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--oot-space-xs);
+  padding: var(--oot-space-sm) 0;
+}
+
+.heartDisplay {
+  transform: scale(1.3);
+  transform-origin: center;
+  padding: var(--oot-space-xs) 0;
+}
+
+/* Uptime section */
+.uptimeSection {
+  margin: var(--oot-space-xs) 0;
+}
+
+.uptimeInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--oot-space-sm);
+}
+
+/* Generic section */
 .section {
   display: flex;
   flex-direction: column;
   gap: var(--oot-space-xs);
 }
 
+/* Network details grid */
 .details {
   display: flex;
   flex-direction: column;
@@ -45,9 +97,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 0;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(139, 105, 20, 0.15);
 }
 
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+/* Tags */
 .tags {
   display: flex;
   gap: var(--oot-space-xs);
@@ -57,11 +115,83 @@
 .tag {
   background: rgba(201, 162, 39, 0.15);
   border: 1px solid var(--oot-gold-dark);
-  padding: 1px 4px;
+  padding: 2px 6px;
 }
 
+/* Actions */
 .actions {
   display: flex;
   gap: var(--oot-space-sm);
   margin-top: var(--oot-space-sm);
+  flex-wrap: wrap;
+}
+
+/* Result boxes (ping + speed test) */
+.resultBox {
+  margin-top: var(--oot-space-xs);
+  animation: fadeSlideIn 0.3s ease;
+}
+
+.resultContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--oot-space-sm);
+}
+
+.resultHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--oot-space-sm);
+  padding-bottom: var(--oot-space-xs);
+  border-bottom: 1px solid var(--oot-gold-dark);
+}
+
+.resultIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.resultAlive {
+  background: var(--oot-green-light);
+  box-shadow: 0 0 6px var(--oot-green-light);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.resultDead {
+  background: var(--oot-red-heart);
+  box-shadow: 0 0 6px var(--oot-red-heart);
+}
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--oot-space-sm);
+}
+
+.resultItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--oot-space-xs);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(139, 105, 20, 0.2);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }

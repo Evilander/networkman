@@ -54,5 +54,67 @@ export function createDeviceRoutes(deviceRepo: DeviceRepository): Router {
     res.json({ device: device.name, ip: device.ip, ...result });
   });
 
+  router.post('/:id/speedtest', async (req, res) => {
+    const device = deviceRepo.findById(req.params.id);
+    if (!device) { res.status(404).json({ error: 'Device not found' }); return; }
+
+    try {
+      // Run 10 individual pings to gather latency samples
+      const pingCount = 10;
+      const latencies: number[] = [];
+      let totalLoss = 0;
+
+      const pingPromises: Promise<void>[] = [];
+
+      for (let i = 0; i < pingCount; i++) {
+        pingPromises.push(
+          pingHost(device.ip, 5000, 1).then((result) => {
+            if (result.alive && result.time !== null) {
+              latencies.push(result.time);
+            }
+            totalLoss += result.packetLoss;
+          })
+        );
+      }
+
+      await Promise.all(pingPromises);
+
+      // Calculate statistics
+      const avgPacketLoss = totalLoss / pingCount;
+
+      if (latencies.length === 0) {
+        res.json({
+          avgLatency: 0,
+          minLatency: 0,
+          maxLatency: 0,
+          jitter: 0,
+          packetLoss: avgPacketLoss,
+          timestamp: new Date().toISOString(),
+        });
+        return;
+      }
+
+      const sum = latencies.reduce((a, b) => a + b, 0);
+      const avgLatency = sum / latencies.length;
+      const minLatency = Math.min(...latencies);
+      const maxLatency = Math.max(...latencies);
+
+      // Jitter = standard deviation of latency (variance in round-trip times)
+      const variance = latencies.reduce((acc, val) => acc + Math.pow(val - avgLatency, 2), 0) / latencies.length;
+      const jitter = Math.sqrt(variance);
+
+      res.json({
+        avgLatency,
+        minLatency,
+        maxLatency,
+        jitter,
+        packetLoss: avgPacketLoss,
+        timestamp: new Date().toISOString(),
+      });
+    } catch {
+      res.status(500).json({ error: 'Speed test failed' });
+    }
+  });
+
   return router;
 }
