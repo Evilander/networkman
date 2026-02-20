@@ -3,6 +3,7 @@ import pLimit from 'p-limit';
 import { type DashboardConfig, type Device } from '@networkman/shared';
 import { DeviceRepository } from '../database/repositories/device.repository.js';
 import { pingHost } from '../utils/ping.js';
+import { resolveHostname } from '../utils/hostname.js';
 import { getIPRange } from '../utils/subnet.js';
 import { logger } from '../utils/logger.js';
 
@@ -113,9 +114,10 @@ export class NetworkScannerService {
               if (!existing) {
                 newDevices++;
                 const id = crypto.randomUUID();
-                const device = this.deviceRepo.upsertDiscovered(id, ip, null);
+                const hostname = await resolveHostname(ip);
+                const device = this.deviceRepo.upsertDiscovered(id, ip, hostname);
                 this.onDeviceDiscovered?.(device);
-                logger.info(`Discovered: ${ip} (${Math.round(result.time ?? 0)}ms)`);
+                logger.info(`Discovered: ${ip}${hostname ? ` (${hostname})` : ''} (${Math.round(result.time ?? 0)}ms)`);
               }
             }
           })

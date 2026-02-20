@@ -5,12 +5,14 @@ import { HyruleMap } from '../components/map/HyruleMap';
 import { NaviAlert } from '../components/alerts/NaviAlert';
 import { OcarinaConsole } from '../components/console/OcarinaConsole';
 import { ItemGetNotification } from '../components/shared/ItemGetNotification';
+import { HelpModal, HelpButton } from '../components/shared/HelpModal';
 import { PixelText } from '../components/shared/PixelText';
 import styles from './Dashboard.module.css';
 
 export function Dashboard() {
   useWebSocket();
   const [showOcarina, setShowOcarina] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   // Keyboard shortcut: Ctrl+O to open Ocarina Console
   useEffect(() => {
@@ -46,7 +48,11 @@ export function Dashboard() {
         <PixelText size="xs" color="secondary">Ocarina</PixelText>
       </button>
 
+      {/* Help trigger button */}
+      <HelpButton onClick={() => setShowHelp(true)} />
+
       {showOcarina && <OcarinaConsole onClose={() => setShowOcarina(false)} />}
+      {showHelp && <HelpModal onClose={() => setShowHelp(false)} />}
     </DashboardLayout>
   );
 }
