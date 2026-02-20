@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useDeviceStore } from '../../stores/deviceStore';
 import { useSound } from '../../hooks/useSound';
 import { OoTFrame } from './OoTFrame';
@@ -18,9 +18,10 @@ export function ItemGetNotification() {
 
   // Listen for new device discoveries
   const devices = useDeviceStore((s) => s.devices);
-  const [prevCount, setPrevCount] = useState(devices.size);
+  const prevCountRef = useRef(devices.size);
 
   useEffect(() => {
+    const prevCount = prevCountRef.current;
     if (devices.size > prevCount) {
       // Find the newest devices
       const all = Array.from(devices.values());
@@ -30,8 +31,8 @@ export function ItemGetNotification() {
         setQueue((q) => [...q, ...newOnes]);
       }
     }
-    setPrevCount(devices.size);
-  }, [devices.size]); // eslint-disable-line react-hooks/exhaustive-deps
+    prevCountRef.current = devices.size;
+  }, [devices.size]);
 
   // Show next from queue
   useEffect(() => {

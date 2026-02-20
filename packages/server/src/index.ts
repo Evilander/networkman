@@ -72,9 +72,13 @@ async function main() {
     });
 
     socket.on('scan:trigger', async () => {
-      const config = configRepo.get();
-      const result = await scanner.scan(config);
-      io.emit('scan:complete', result);
+      try {
+        const config = configRepo.get();
+        const result = await scanner.scan(config);
+        io.emit('scan:complete', result);
+      } catch (err) {
+        logger.error({ err }, 'Scan triggered via WebSocket failed');
+      }
     });
 
     socket.on('alert:acknowledge', (alertId) => {
@@ -91,6 +95,8 @@ async function main() {
   logger.info('Running initial network scan...');
   scanner.scan(dashConfig).then((result) => {
     io.emit('scan:complete', result);
+  }).catch((err) => {
+    logger.error({ err }, 'Initial network scan failed');
   });
 
   // Start listening

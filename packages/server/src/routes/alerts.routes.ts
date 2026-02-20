@@ -15,6 +15,11 @@ export function createAlertRoutes(alertRepo: AlertRepository): Router {
     res.json(alerts);
   });
 
+  router.post('/acknowledge-all', (_req, res) => {
+    const count = alertRepo.acknowledgeAll();
+    res.json({ acknowledged: count });
+  });
+
   router.get('/:id', (req, res) => {
     const alert = alertRepo.findById(req.params.id);
     if (!alert) { res.status(404).json({ error: 'Alert not found' }); return; }
@@ -25,11 +30,6 @@ export function createAlertRoutes(alertRepo: AlertRepository): Router {
     const alert = alertRepo.acknowledge(req.params.id);
     if (!alert) { res.status(404).json({ error: 'Alert not found' }); return; }
     res.json(alert);
-  });
-
-  router.post('/acknowledge-all', (_req, res) => {
-    const count = alertRepo.acknowledgeAll();
-    res.json({ acknowledged: count });
   });
 
   router.delete('/:id', (req, res) => {
