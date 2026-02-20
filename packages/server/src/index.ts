@@ -101,7 +101,15 @@ async function main() {
 
   // Start listening
   httpServer.listen(serverConfig.port, () => {
-    logger.info(`NetworkMan server running on http://localhost:${serverConfig.port}`);
+    const url = `http://localhost:${serverConfig.port}`;
+    logger.info(`NetworkMan server running on ${url}`);
+
+    // Auto-open browser in portable mode
+    if (process.env.NETWORKMAN_AUTO_OPEN !== '0') {
+      import('node:child_process').then(({ exec }) => {
+        exec(`start "" "${url}"`);
+      }).catch(() => {});
+    }
   });
 
   // Graceful shutdown
