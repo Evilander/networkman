@@ -9,7 +9,7 @@ export interface ServerConfig {
 export function loadServerConfig(): ServerConfig {
   return {
     port: parseInt(process.env.PORT || '3001', 10),
-    dataDir: process.env.DATA_DIR || './data',
+    dataDir: process.env.NETWORKMAN_DATA_DIR || process.env.DATA_DIR || './data',
     dashboard: { ...DEFAULT_CONFIG },
   };
 }

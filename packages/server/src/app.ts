@@ -29,7 +29,7 @@ export function createApp(deps: AppDeps) {
   app.use(express.json());
 
   // Serve static client files in production
-  const clientDist = path.resolve(import.meta.dirname, '../../client/dist');
+  const clientDist = process.env.NETWORKMAN_CLIENT_DIST || path.resolve(import.meta.dirname, '../../client/dist');
   if (fs.existsSync(clientDist)) {
     app.use(express.static(clientDist));
   }
