@@ -45,3 +45,19 @@ a {
   color: var(--oot-blue-navi);
   text-decoration: none;
 }
+
+/*
+ * Respect the OS "reduce motion" setting. Neutralizes every keyframe animation
+ * and transition in the app (Navi bob/glow, heart pulses, marker blinks, scan
+ * sweeps, etc.) without removing the styles themselves.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

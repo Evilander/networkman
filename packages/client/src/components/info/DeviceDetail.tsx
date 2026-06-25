@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback, type ReactElement } from 'react';
 import { useDeviceStore } from '../../stores/deviceStore';
 import { HeartContainer } from '../health/HeartContainer';
 import { MetricsChart } from './MetricsChart';
 import { PixelText } from '../shared/PixelText';
 import { OoTButton } from '../shared/OoTButton';
 import { OoTFrame } from '../shared/OoTFrame';
+import { classifyDevice, type DeviceType } from '../../lib/deviceType';
 import styles from './DeviceDetail.module.css';
 
 interface DeviceDetailProps {
@@ -29,28 +30,15 @@ interface SpeedTestResult {
   timestamp: string;
 }
 
-type DeviceType = 'router' | 'server' | 'printer' | 'phone' | 'computer' | 'unknown';
+type DetailDeviceType = DeviceType | 'unknown';
 
-function getDeviceType(ip: string, hostname: string | null, name: string): DeviceType {
-  const h = (hostname ?? '').toLowerCase();
-  const n = name.toLowerCase();
-  const combined = `${h} ${n}`;
-
-  if (ip.endsWith('.1') || /router|gateway|gw/i.test(combined)) return 'router';
-  if (/server|srv|nas|dc\d/i.test(combined)) return 'server';
-  if (/printer|prn|print/i.test(combined)) return 'printer';
-  if (/phone|iphone|android|mobile/i.test(combined)) return 'phone';
-  if (/pc|desktop|laptop|workstation/i.test(combined)) return 'computer';
-  return 'unknown';
-}
-
-function DeviceTypeIcon({ type, status }: { type: DeviceType; status: string }) {
+function DeviceTypeIcon({ type, status }: { type: DetailDeviceType; status: string }) {
   const color = status === 'online' ? 'var(--oot-green-light)' :
     status === 'degraded' ? 'var(--oot-gold-light)' :
     status === 'offline' ? 'var(--oot-red-heart)' :
     'var(--oot-brown-light)';
 
-  const icons: Record<DeviceType, React.ReactElement> = {
+  const icons: Record<DetailDeviceType, ReactElement> = {
     router: (
       <svg viewBox="0 0 32 32" width="32" height="32">
         <rect x="4" y="14" width="24" height="12" rx="2" fill={color} opacity="0.9" />
@@ -62,6 +50,16 @@ function DeviceTypeIcon({ type, status }: { type: DeviceType; status: string }) 
         <circle cx="16" cy="5" r="2" fill={color} />
         <circle cx="6" cy="5" r="1.5" fill={color} opacity="0.7" />
         <circle cx="26" cy="5" r="1.5" fill={color} opacity="0.7" />
+      </svg>
+    ),
+    switch: (
+      <svg viewBox="0 0 32 32" width="32" height="32">
+        <rect x="3" y="11" width="26" height="10" rx="2" fill={color} opacity="0.9" />
+        <rect x="6" y="14" width="3" height="2" rx="0.5" fill="var(--oot-bg-darkest)" />
+        <rect x="11" y="14" width="3" height="2" rx="0.5" fill="var(--oot-bg-darkest)" />
+        <rect x="16" y="14" width="3" height="2" rx="0.5" fill="var(--oot-bg-darkest)" />
+        <rect x="21" y="14" width="3" height="2" rx="0.5" fill="var(--oot-bg-darkest)" />
+        <circle cx="26" cy="16" r="1.5" fill="var(--oot-green-light)" />
       </svg>
     ),
     server: (
@@ -225,7 +223,7 @@ export function DeviceDetail({ deviceId }: DeviceDetailProps) {
     unknown: 'secondary' as const,
   }[device.status];
 
-  const deviceType = getDeviceType(device.ip, device.hostname, device.name);
+  const deviceType: DetailDeviceType = classifyDevice(device) ?? 'unknown';
 
   return (
     <div className={styles.container}>

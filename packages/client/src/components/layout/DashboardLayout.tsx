@@ -1,10 +1,10 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { HUDOverlay } from './HUDOverlay';
 import { Sidebar } from './Sidebar';
 import styles from './DashboardLayout.module.css';
 
 interface DashboardLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
