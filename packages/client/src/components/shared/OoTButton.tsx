@@ -1,7 +1,7 @@
-import React from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import styles from './OoTButton.module.css';
 
-interface OoTButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface OoTButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger';
   size?: 'sm' | 'md';
 }

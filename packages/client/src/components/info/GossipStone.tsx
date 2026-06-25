@@ -1,9 +1,9 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { OoTFrame } from '../shared/OoTFrame';
 import styles from './GossipStone.module.css';
 
 interface GossipStoneProps {
-  children: React.ReactNode;
+  children: ReactNode;
   visible: boolean;
 }
 
