@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import styles from './OoTFrame.module.css';
 
 interface OoTFrameProps {
-  children: React.ReactNode;
+  children: ReactNode;
   variant?: 'dialog' | 'inventory' | 'hud' | 'gossip';
   className?: string;
 }
