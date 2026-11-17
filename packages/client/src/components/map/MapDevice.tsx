@@ -1,47 +1,13 @@
-import React, { useMemo } from 'react';
+import { useMemo, type ReactElement } from 'react';
 import type { Device } from '@networkman/shared';
 import { useDeviceStore } from '../../stores/deviceStore';
 import { HeartContainer } from '../health/HeartContainer';
 import { PixelText } from '../shared/PixelText';
+import { classifyDevice, deviceTypeLabel, type DeviceType } from '../../lib/deviceType';
 import styles from './MapDevice.module.css';
 
 interface MapDeviceProps {
   device: Device;
-}
-
-type DeviceType = 'router' | 'switch' | 'server' | 'printer' | 'phone' | 'workstation';
-
-function detectDeviceType(device: Device): DeviceType {
-  const hostname = (device.hostname ?? device.name ?? '').toLowerCase();
-  const ip = device.ip ?? '';
-
-  if (hostname.includes('router') || hostname.includes('gateway') || /\.1$/.test(ip)) {
-    return 'router';
-  }
-  if (hostname.includes('switch')) {
-    return 'switch';
-  }
-  if (hostname.includes('server') || hostname.includes('srv')) {
-    return 'server';
-  }
-  if (hostname.includes('printer') || hostname.includes('print')) {
-    return 'printer';
-  }
-  if (hostname.includes('phone') || hostname.includes('voip')) {
-    return 'phone';
-  }
-  return 'workstation';
-}
-
-function deviceTypeLabel(type: DeviceType): string {
-  switch (type) {
-    case 'router': return 'Router';
-    case 'switch': return 'Switch';
-    case 'server': return 'Server';
-    case 'printer': return 'Printer';
-    case 'phone': return 'Phone';
-    case 'workstation': return 'Workstation';
-  }
 }
 
 /** OoT-style pixel art castle gate icon for routers */
@@ -311,13 +277,13 @@ function WorkstationIcon() {
   );
 }
 
-const ICON_COMPONENTS: Record<DeviceType, () => React.ReactElement> = {
+const ICON_COMPONENTS: Record<DeviceType, () => ReactElement> = {
   router: RouterIcon,
   switch: SwitchIcon,
   server: ServerIcon,
   printer: PrinterIcon,
   phone: PhoneIcon,
-  workstation: WorkstationIcon,
+  computer: WorkstationIcon,
 };
 
 function statusLabel(status: Device['status']): string {
@@ -334,7 +300,7 @@ export function MapDevice({ device }: MapDeviceProps) {
   const selectedId = useDeviceStore((s) => s.selectedDeviceId);
   const isSelected = selectedId === device.id;
 
-  const deviceType = useMemo(() => detectDeviceType(device), [device]);
+  const deviceType = useMemo(() => classifyDevice(device) ?? 'computer', [device]);
   const IconComponent = ICON_COMPONENTS[deviceType];
 
   const statusClass = {

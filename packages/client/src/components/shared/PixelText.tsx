@@ -1,8 +1,8 @@
-import React from 'react';
+import { createElement, type ReactNode } from 'react';
 import styles from './PixelText.module.css';
 
 interface PixelTextProps {
-  children: React.ReactNode;
+  children: ReactNode;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   color?: 'primary' | 'secondary' | 'highlight' | 'danger';
   as?: keyof HTMLElementTagNameMap;
@@ -10,7 +10,7 @@ interface PixelTextProps {
 }
 
 export function PixelText({ children, size = 'sm', color = 'primary', as: Tag = 'span', className = '' }: PixelTextProps) {
-  return React.createElement(
+  return createElement(
     Tag,
     { className: `${styles.text} ${styles[`size_${size}`]} ${styles[`color_${color}`]} ${className}` },
     children,
