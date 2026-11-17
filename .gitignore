@@ -32,3 +32,13 @@ check-devices.mjs
 *.db-wal
 *.db-shm
 networkman-data/
+
+# local agent and planning files
+CLAUDE.md
+AGENTS.md
+codex.md
+.claude/
+.codex/
+.agents/
+notes/
+todos/
